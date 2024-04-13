@@ -1,4 +1,4 @@
-package com.thana.skyblockdeluxe.core;
+package com.thana.zombie.core;
 
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -12,7 +12,7 @@ public class ModMixinConfigPlugin implements IMixinConfigPlugin {
     }
 
     public String getRefMapperConfig() {
-        return "skyblockdeluxe-refmap.json";
+        return "zombieutils-refmap.json";
     }
 
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {

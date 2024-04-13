@@ -1,2 +1,2 @@
 Manifest-Version: 1.0
-MixinConnector: com.thana.skyblockdeluxe.core.ModMixinConnector
+MixinConnector: com.thana.zombie.core.ModMixinConnector

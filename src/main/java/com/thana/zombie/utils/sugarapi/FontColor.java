@@ -1,4 +1,4 @@
-package com.thana.skyblockdeluxe.utils.sugarapi;
+package com.thana.zombie.utils.sugarapi;
 
 @SuppressWarnings("all")
 public class FontColor {

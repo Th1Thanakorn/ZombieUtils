@@ -1,4 +1,4 @@
-package com.thana.skyblockdeluxe.core;
+package com.thana.zombie.core;
 
 import org.spongepowered.asm.launch.MixinBootstrap;
 import org.spongepowered.asm.mixin.Mixins;
@@ -8,6 +8,6 @@ public class ModMixinConnector implements IMixinConnector {
 
     public void connect() {
         MixinBootstrap.init();
-        Mixins.addConfiguration("mixins.skyblockdeluxe.json");
+        Mixins.addConfiguration("mixins.zombieutils.json");
     }
 }

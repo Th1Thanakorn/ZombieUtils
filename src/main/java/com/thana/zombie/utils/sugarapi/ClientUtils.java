@@ -1,4 +1,4 @@
-package com.thana.skyblockdeluxe.utils.sugarapi;
+package com.thana.zombie.utils.sugarapi;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
