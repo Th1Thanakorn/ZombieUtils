@@ -9,6 +9,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.StringUtil;
+import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.scores.*;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.InputEvent;
@@ -31,6 +32,9 @@ public class MainEventHandler {
 
     public static boolean isZombie;
     public static boolean isAlienArcadium;
+    public static boolean foundMaxAmmo;
+    public static boolean foundDoubleGold;
+    public static boolean foundShoppingSpree;
     public static int round;
     public static int moneyAll = 0;
 
@@ -65,6 +69,12 @@ public class MainEventHandler {
                 }
 
                 MainEventHandler.isZombie = COLOR_CODES_PATTERN.matcher(objective.getDisplayName().getString()).replaceAll("").contains("ZOMBIES");
+
+                if (this.mc.player.tickCount % 10 == 0) {
+                    foundMaxAmmo = !this.mc.level.getEntitiesOfClass(ArmorStand.class, this.mc.player.getBoundingBox().inflate(50.0D), (stand) -> stand.hasCustomName() && MessageString.unformatted(stand.getCustomName().getString()).toLowerCase().contains("max ammo")).isEmpty();
+                    foundDoubleGold = !this.mc.level.getEntitiesOfClass(ArmorStand.class, this.mc.player.getBoundingBox().inflate(50.0D), (stand) -> stand.hasCustomName() && MessageString.unformatted(stand.getCustomName().getString()).toLowerCase().contains("double gold")).isEmpty();
+                    foundShoppingSpree = !this.mc.level.getEntitiesOfClass(ArmorStand.class, this.mc.player.getBoundingBox().inflate(50.0D), (stand) -> stand.hasCustomName() && MessageString.unformatted(stand.getCustomName().getString()).toLowerCase().contains("shopping spree")).isEmpty();
+                }
             }
         }
     }
@@ -97,6 +107,10 @@ public class MainEventHandler {
             else if (KeyHandler.KEY_HIDE_PLAYERS.isDown()) {
                 Constants.hidePlayers = !Constants.hidePlayers;
                 ClientUtils.printClientMessage("Hide nearby players has been set to: "+ (Constants.hidePlayers ? ChatFormatting.GREEN + "ON" : ChatFormatting.RED + "OFF"));
+            }
+            else if (KeyHandler.KEY_DEBUGGING.isDown()) {
+                Constants.debugging = !Constants.debugging;
+                ClientUtils.printClientMessage("Debugging has been set to: "+ (Constants.debugging ? ChatFormatting.GREEN + "ON" : ChatFormatting.RED + "OFF"));
             }
         }
     }

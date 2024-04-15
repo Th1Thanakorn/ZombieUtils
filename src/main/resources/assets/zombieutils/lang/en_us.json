@@ -1,5 +1,6 @@
 {
   "key.categories.zombieutils": "Zombie Utils",
   "key.zombieutils.toggle_highlights": "Toggle Zombie Highlights",
-  "key.zombieutils.hide_players": "Hide Nearby Players"
+  "key.zombieutils.hide_players": "Hide Nearby Players",
+  "key.zombieutils.debugging": "Debugging"
 }
