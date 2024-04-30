@@ -2,7 +2,6 @@ package com.thana.zombie.event.handler;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.thana.zombie.utils.Constants;
-import com.thana.zombie.utils.sugarapi.ClientUtils;
 import com.thana.zombie.utils.sugarapi.FontColor;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -31,7 +30,8 @@ public class HUDRendererEventHandler {
             MainEventHandler.moneyAll = 0;
         }
 
-        this.roundHandler(poseStack);
+        if (MainEventHandler.isZombie && MainEventHandler.isAlienArcadium)
+            this.roundHandler(poseStack);
 
         int index = 0;
         if (MainEventHandler.foundMaxAmmo) {
@@ -86,9 +86,6 @@ public class HUDRendererEventHandler {
 
     public void roundHandler(PoseStack poseStack) {
         int round = MainEventHandler.round;
-        if (Constants.debugging) {
-            ClientUtils.printClientMessage(round);
-        }
         if (round == 15) {
             this.renderRoundText(poseStack, ChatFormatting.RED + "1 Giant");
         }

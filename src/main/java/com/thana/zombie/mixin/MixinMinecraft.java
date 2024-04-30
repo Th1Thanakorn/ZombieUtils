@@ -7,9 +7,7 @@ import net.minecraft.client.Options;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.monster.Giant;
-import net.minecraft.world.entity.monster.Skeleton;
-import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.monster.*;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -27,6 +25,6 @@ public class MixinMinecraft {
 
     @Inject(method = "shouldEntityAppearGlowing", at = @At("RETURN"), cancellable = true)
     public void shouldEntityAppearGlowing(Entity entity, CallbackInfoReturnable<Boolean> infoReturnable) {
-        infoReturnable.setReturnValue(MainEventHandler.isZombie ? (entity instanceof Zombie || entity instanceof Skeleton || entity instanceof Giant) && Constants.toggleGlowing : entity.isCurrentlyGlowing() || this.player != null && this.player.isSpectator() && this.options.keySpectatorOutlines.isDown() && entity.getType() == EntityType.PLAYER);
+        infoReturnable.setReturnValue(MainEventHandler.isZombie ? (entity instanceof Witch || entity instanceof WitherSkeleton || entity instanceof Zombie || entity instanceof Skeleton || entity instanceof Giant) && Constants.toggleGlowing : entity.isCurrentlyGlowing() || this.player != null && this.player.isSpectator() && this.options.keySpectatorOutlines.isDown() && entity.getType() == EntityType.PLAYER);
     }
 }

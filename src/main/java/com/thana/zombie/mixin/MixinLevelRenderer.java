@@ -3,9 +3,7 @@ package com.thana.zombie.mixin;
 import com.thana.zombie.event.handler.MainEventHandler;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.monster.Giant;
-import net.minecraft.world.entity.monster.Skeleton;
-import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.monster.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -25,6 +23,12 @@ public class MixinLevelRenderer {
             }
             if (entity instanceof Giant) {
                 return 16733525; // Red
+            }
+            if (entity instanceof Witch) {
+                return 16777215; // White
+            }
+            if (entity instanceof WitherSkeleton) {
+                return 5636095; // Aqua
             }
         }
         return entity.getTeamColor();

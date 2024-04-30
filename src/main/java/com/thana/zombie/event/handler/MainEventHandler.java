@@ -59,12 +59,23 @@ public class MainEventHandler {
                     String scoreText = removeControlCodes(stripColorCodes(PlayerTeam.formatNameForTeam(team, Component.literal(MessageString.unformatted(score1.getOwner()))).getString()));
                     scoreText = cleanScoreboard(scoreText);
                     scoreText = scoreText.trim();
-                    if (scoreText.contains("Round")) {
-                        round = Integer.parseInt(scoreText.replaceAll("[^0-9.]", ""));
-                    }
+//                    if (scoreText.contains("Round")) {
+//                        round = Integer.parseInt(scoreText.replaceAll("[^0-9.]", ""));
+//                    }
                     if (scoreText.contains("Alien Arcadium")) {
                         isAlienArcadium = true;
                         break;
+                    }
+                }
+                for (Score score1 : collection) {
+                    Team team = scoreboard.getPlayersTeam(score1.getOwner());
+                    String scoreText = PlayerTeam.formatNameForTeam(team, Component.literal(MessageString.unformatted(score1.getOwner()))).getString();
+                    if (scoreText.contains("Round")) {
+                        round = Integer.parseInt(scoreText.replaceAll("[^0-9]", ""));
+                        if (Constants.debugging) {
+                            ClientUtils.printClientMessage(scoreText);
+                            ClientUtils.printClientMessage(round);
+                        }
                     }
                 }
 
