@@ -14,11 +14,13 @@ public class KeyHandler {
     public static final KeyMapping KEY_TOGGLE_HIGHLIGHTS = new KeyMapping("key.zombieutils.toggle_highlights", GLFW.GLFW_KEY_K, "key.categories.zombieutils");
     public static final KeyMapping KEY_HIDE_PLAYERS = new KeyMapping("key.zombieutils.hide_players", GLFW.GLFW_KEY_M, "key.categories.zombieutils");
     public static final KeyMapping KEY_DEBUGGING = new KeyMapping("key.zombieutils.debugging", GLFW.GLFW_KEY_N, "key.categories.zombieutils");
+    public static final KeyMapping KEY_SWAP_WEAPONS = new KeyMapping("key.zombieutils.swap_weapons_1", GLFW.GLFW_KEY_X, "key.categories.zombieutils");
 
     @SubscribeEvent
     public static void init(RegisterKeyMappingsEvent event) {
         event.register(KEY_TOGGLE_HIGHLIGHTS);
         event.register(KEY_HIDE_PLAYERS);
         event.register(KEY_DEBUGGING);
+        event.register(KEY_SWAP_WEAPONS);
     }
 }

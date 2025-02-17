@@ -5,4 +5,5 @@ public class Constants {
     public static boolean toggleGlowing = false;
     public static boolean hidePlayers = false;
     public static boolean debugging = false;
+    public static boolean swapping = false;
 }

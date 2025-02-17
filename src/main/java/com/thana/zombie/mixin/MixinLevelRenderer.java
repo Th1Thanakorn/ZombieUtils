@@ -2,8 +2,10 @@ package com.thana.zombie.mixin;
 
 import com.thana.zombie.event.handler.MainEventHandler;
 import net.minecraft.client.renderer.LevelRenderer;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -29,6 +31,13 @@ public class MixinLevelRenderer {
             }
             if (entity instanceof WitherSkeleton) {
                 return 5636095; // Aqua
+            }
+        }
+        if (MainEventHandler.isSheep/* && Config.healthTracking*/) {
+            if (entity instanceof Player player) {
+                float f = player.getHealth() / (player.getMaxHealth());
+
+                return Mth.hsvToRgb(f / 3.0F, 1.0F, 1.0F);
             }
         }
         return entity.getTeamColor();

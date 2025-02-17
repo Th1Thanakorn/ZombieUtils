@@ -2,5 +2,7 @@
   "key.categories.zombieutils": "Zombie Utils",
   "key.zombieutils.toggle_highlights": "Toggle Zombie Highlights",
   "key.zombieutils.hide_players": "Hide Nearby Players",
-  "key.zombieutils.debugging": "Debugging"
+  "key.zombieutils.debugging": "Debugging",
+  "key.zombieutils.swap_weapons_1": "Swap Weapons 1",
+  "key.zombieutils.swap_weapons_2": "Swap Weapons 2"
 }

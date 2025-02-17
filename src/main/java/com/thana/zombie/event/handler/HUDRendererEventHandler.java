@@ -1,10 +1,12 @@
 package com.thana.zombie.event.handler;
 
+import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.thana.zombie.utils.Constants;
 import com.thana.zombie.utils.sugarapi.FontColor;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -22,6 +24,10 @@ public class HUDRendererEventHandler {
     public void onRenderOverlayGui(RenderGuiOverlayEvent event) {
         PoseStack poseStack = event.getPoseStack();
         long now = System.currentTimeMillis();
+        Window window = this.mc.getWindow();
+        int width = window.getGuiScaledWidth();
+        int height = window.getGuiScaledHeight();
+        if (this.mc.player == null) return;
 
         if (MainEventHandler.moneyAll > 0 && now - lastMoneyShown < 3000L) {
             this.drawMoneyLog(poseStack, 0.8F, now);
@@ -30,8 +36,12 @@ public class HUDRendererEventHandler {
             MainEventHandler.moneyAll = 0;
         }
 
-        if (MainEventHandler.isZombie && MainEventHandler.isAlienArcadium)
-            this.roundHandler(poseStack);
+        if (MainEventHandler.isZombie) {
+            if (MainEventHandler.isAlienArcadium) {
+                this.roundHandler(poseStack);
+            }
+            Gui.drawCenteredString(poseStack, this.mc.font, ChatFormatting.RED.toString() + MainEventHandler.health + "/" + (int) (this.mc.player.getMaxHealth()), width / 2 - 110, height - 16, FontColor.WHITE);
+        }
 
         int index = 0;
         if (MainEventHandler.foundMaxAmmo) {
@@ -126,6 +136,12 @@ public class HUDRendererEventHandler {
             this.renderRoundText(poseStack, ChatFormatting.RED + "3 Giants + 2 Old Ones");
         }
         if (round == 46) {
+            this.renderRoundText(poseStack, ChatFormatting.RED + "1 Old One");
+        }
+        if (round == 47) {
+            this.renderRoundText(poseStack, ChatFormatting.RED + "4 Giants");
+        }
+        if (round == 48) {
             this.renderRoundText(poseStack, ChatFormatting.RED + "1 Old One");
         }
         if (round >= 50 && round <= 54) {
